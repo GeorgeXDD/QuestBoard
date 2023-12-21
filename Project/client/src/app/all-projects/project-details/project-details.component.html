@@ -1,0 +1,22 @@
+<div>
+    <h2>Project Detail</h2>
+    <p>Project ID: {{ projectId }}</p>
+  </div>
+  
+  <div class="columns-container">
+    <div *ngFor="let column of taskColumns" class="columns" cdkDropList [id]="column.name" [cdkDropListConnectedTo]="connectedLists(column.name)" cdkDropListOrientation="vertical" [cdkDropListData]="column.tasks" (cdkDropListDropped)="onTaskMoved($event)">
+      <h3>{{ column.name | titlecase }}</h3>
+      <div *ngFor="let task of column.tasks" cdkDrag [cdkDragData]="task">
+        {{ task.title }}
+        {{ task.description }}
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div>
+    <h2>Create Task</h2>
+    <button (click)="openCreateTaskDialog()">Create Task</button>
+  </div>
+  

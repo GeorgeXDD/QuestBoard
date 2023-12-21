@@ -1,0 +1,40 @@
+.columns-container {
+    display: flex;
+  }
+
+.columns {
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .columns h3 {
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  
+  div[cdkDrag] {
+    cursor: move;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+  
+  div[cdkDrag]:hover {
+    background-color: #f0f0f0;
+  }
+
+  .columns.todo {
+    order: 1;
+  }
+  
+  .columns.inProgress {
+    order: 2;
+  }
+  
+  .columns.done {
+    order: 3;
+  }

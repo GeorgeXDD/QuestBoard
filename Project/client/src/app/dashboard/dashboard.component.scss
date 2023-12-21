@@ -1,0 +1,50 @@
+.project-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .project-card {
+    border: 2px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .project-card:hover {
+    background-color: #f0f0f0;
+  }
+
+  .task-list {
+    margin-top: 20px;
+    border: 2px solid #ccc; 
+  }
+  
+  .task-card {
+    display: flex;
+    border-bottom: 1px solid #ccc; 
+  }
+  
+  .task-header {
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .task-rectangle {
+    font-size: 12px;
+    padding: 5px;
+    margin: 2px;
+  }
+  
+  .task-rectangle:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .task-list div {
+    flex: 1;
+  }
+  
+  .task-list p {
+    margin: 0;
+  }
+  
