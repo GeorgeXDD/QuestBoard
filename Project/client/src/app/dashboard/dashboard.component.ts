@@ -76,6 +76,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/project', projectId]);
   }
 
+  navigateToProjects(): void {
+    this.router.navigate(['/projects']);
+  }
+
   openTaskPopup(task: Task): void {
     const dialogRef = this.dialog.open(TaskComponent, {
       width: '400px',

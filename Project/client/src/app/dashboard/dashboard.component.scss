@@ -1,50 +1,41 @@
-.project-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .project-card {
-    border: 2px solid #ccc;
-    padding: 20px;
-    margin: 10px;
-    cursor: pointer;
-  }
-  
-  .project-card:hover {
-    background-color: #f0f0f0;
-  }
+.culoare{
+  color:#161A30;
+}
 
-  .task-list {
-    margin-top: 20px;
-    border: 2px solid #ccc; 
-  }
-  
-  .task-card {
-    display: flex;
-    border-bottom: 1px solid #ccc; 
-  }
-  
-  .task-header {
-    font-weight: bold;
-    border-bottom: 2px solid #ccc;
-  }
-  
-  .task-rectangle {
-    font-size: 12px;
-    padding: 5px;
-    margin: 2px;
-  }
-  
-  .task-rectangle:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .task-list div {
-    flex: 1;
-  }
-  
-  .task-list p {
-    margin: 0;
-  }
-  
+.container-fluid mt-4 {
+  cursor: default;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card[clickable] {
+  cursor: pointer;
+}
+
+.card[clickable]:hover {
+  background-color: #f0f0f0;
+  color: #161a30;
+}
+
+
+.task-header {
+  font-weight: bold;
+  border: 3px solid rgb(177, 176, 176);
+}
+
+.card {
+  background-color: #161a30;
+  color: #b6bbc4;
+}
+
+.card-show-all {
+  background-color: #f0f0f0!important;
+  color: #161a30!important ; 
+}
+
+.card-show-all:hover {
+  background-color: #161a30!important ;
+  color: #f0f0f0!important ;
+}

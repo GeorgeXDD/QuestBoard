@@ -1,7 +1,7 @@
 <div class="overlay"></div>
 <div class="task-popup-container">
   <div class="task-popup">
-    <h2>Create Task</h2>
+    <h2>{{ data.isEditMode ? 'Edit Task' : 'Create Task' }}</h2>
     <form>
       <div class="mb-3">
         <label for="taskTitle" class="form-label">Task Title:</label>
@@ -18,7 +18,7 @@
         <textarea class="form-control" id="description" [(ngModel)]="task.description"></textarea>
       </div>
 
-      <button type="button" class="btn btn-primary" (click)="createTask()">Create Task</button>
+      <button type="button" class="btn btn-primary" (click)="saveTask()">{{ data.isEditMode ? 'Update Task' : 'Create Task' }}</button>
     </form>
   </div>
 </div>

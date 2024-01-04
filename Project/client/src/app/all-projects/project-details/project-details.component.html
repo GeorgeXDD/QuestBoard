@@ -1,22 +1,23 @@
-<div>
+<div class="container-fluid mt-4">
+  <div>
     <h2>Project Detail</h2>
     <p>Project ID: {{ projectId }}</p>
   </div>
-  
-  <div class="columns-container">
-    <div *ngFor="let column of taskColumns" class="columns" cdkDropList [id]="column.name" [cdkDropListConnectedTo]="connectedLists(column.name)" cdkDropListOrientation="vertical" [cdkDropListData]="column.tasks" (cdkDropListDropped)="onTaskMoved($event)">
-      <h3>{{ column.name | titlecase }}</h3>
-      <div *ngFor="let task of column.tasks" cdkDrag [cdkDragData]="task">
-        {{ task.title }}
-        {{ task.description }}
+
+  <div class="row">
+    <div *ngFor="let column of taskColumns" class="col-md-4">
+      <div class="card columns" cdkDropList [id]="column.name" [cdkDropListConnectedTo]="connectedLists(column.name)" cdkDropListOrientation="vertical" [cdkDropListData]="column.tasks" (cdkDropListDropped)="onTaskMoved($event)">
+        <h3 class="card-title">{{ column.name | titlecase }}</h3>
+        <div *ngFor="let task of column.tasks" cdkDrag [cdkDragData]="task" class="card-body" (click)="openCreateTaskDialog(task)">
+          <p class="card-text">{{ task.title }}</p>
+          <p class="card-text">{{ task.description }}</p>
+        </div>
       </div>
     </div>
   </div>
-  
-  
-  
+
   <div>
     <h2>Create Task</h2>
-    <button (click)="openCreateTaskDialog()">Create Task</button>
+    <button class="btn btn-primary" (click)="openCreateTaskDialog()">Create Task</button>
   </div>
-  
+</div>

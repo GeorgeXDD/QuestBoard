@@ -20,14 +20,17 @@ export class ProjectDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private dialog: MatDialog) {}
 
-  openCreateTaskDialog(): void {
+  openCreateTaskDialog(task?: Task): void {
     const dialogRef = this.dialog.open(TaskComponent, {
       width: '400px',
+      data: { task, isEditMode: !!task }
     });
-
+  
     dialogRef.afterClosed().subscribe(() => {
+
     });
   }
+  
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
