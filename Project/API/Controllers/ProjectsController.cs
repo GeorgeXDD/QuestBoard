@@ -24,10 +24,28 @@ namespace API.Controllers
 
             return projects;
         }
-        [HttpGet("{id}")] // /api/users/1
-        public async Task<ActionResult<AppUser>> GetProject(int id)
+        [HttpGet("{id}")] // /api/project/1
+        public async Task<ActionResult<Project>> GetProject(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await _context.Projects.FindAsync(id);
+        }
+        [HttpDelete("delete-project/{id}")]
+        public async Task<IActionResult> DeleteProject(int id)
+        {
+            // Find the task by its ID in the database
+            var projectToDelete = await _context.Projects.FindAsync(id);
+
+            if (projectToDelete == null)
+            {
+                // Task with the given ID not found
+                return NotFound(new { Message = "Project does not exist" });
+            }
+
+            // Remove the task from the database
+            _context.Projects.Remove(projectToDelete);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Project deleted successfully" });
         }
     }
 }
