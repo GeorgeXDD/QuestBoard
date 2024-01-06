@@ -1,8 +1,9 @@
 ﻿namespace API.Entities
 {
-    public class Task
+    public class AppTask
     {
         public Guid taskId { get; set; }
+        public int Id { get; set; }
         public string assignedUserId { get; set; }
         public string title { get; set; }
         public string description { get; set; }

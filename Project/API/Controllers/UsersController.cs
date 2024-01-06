@@ -31,10 +31,10 @@ namespace API.Controllers
         {
             return await _context.Users.FindAsync(id);
         }
-        [HttpGet("projects")]
-        public IActionResult GetProjects()
-        {
-            List<Project> response= _context.
-        }
+        //[HttpGet("projects")]
+        //public IActionResult GetProjects()
+        //{
+        //    List<Project> response= _context.
+        //}
     }
 }
