@@ -10,5 +10,7 @@ namespace API.Data
         }
 
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Entities.Task> Tasks { get; set; }
     }
 }

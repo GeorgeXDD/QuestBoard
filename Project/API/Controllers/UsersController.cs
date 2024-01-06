@@ -13,7 +13,6 @@ namespace API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
-        private readonly DataContext a;
         public UsersController(DataContext context)
         {
             _context = context;
@@ -31,6 +30,11 @@ namespace API.Controllers
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
             return await _context.Users.FindAsync(id);
+        }
+        [HttpGet("projects")]
+        public IActionResult GetProjects()
+        {
+            List<Project> response= _context.
         }
     }
 }
