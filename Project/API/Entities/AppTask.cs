@@ -2,7 +2,6 @@
 {
     public class AppTask
     {
-        public Guid taskId { get; set; }
         public int Id { get; set; }
         public string assignedUserId { get; set; }
         public string title { get; set; }

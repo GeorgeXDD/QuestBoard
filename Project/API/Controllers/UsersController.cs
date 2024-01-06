@@ -31,10 +31,20 @@ namespace API.Controllers
         {
             return await _context.Users.FindAsync(id);
         }
-        //[HttpGet("projects")]
-        //public IActionResult GetProjects()
-        //{
-        //    List<Project> response= _context.
-        //}
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        {
+            // Use your DbContext to query the Users table
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.UserName == request.Username && u.Password == request.Password);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return Unauthorized(new { Message = "Invalid credentials" });
+        }
+
+
     }
 }
