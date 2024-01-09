@@ -3,4 +3,5 @@ export interface Task {
     title: string;
     assignTo: string;
     description: string;
+    state: string;
   }

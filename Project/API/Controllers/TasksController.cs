@@ -17,6 +17,8 @@ namespace API.Controllers
         {
             _context = context;
         }
+
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppTask>>> GetTasks()
         {
@@ -24,11 +26,44 @@ namespace API.Controllers
 
             return tasks;
         }
+
+
         [HttpGet("{id}")] // /api/task/1
         public async Task<ActionResult<AppTask>> GetTask(int id)
         {
             return await _context.Tasks.FindAsync(id);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<AppTask>> CreateTask(AppTask task)
+        {
+            _context.Tasks.Add(task);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTask", new { id = task.Id }, task);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTask(int id, AppTask updatedTask)
+        {
+            var existingTask = await _context.Tasks.FindAsync(id);
+
+            if (existingTask == null)
+            {
+                return NotFound(new { Message = "Task not found" });
+            }
+
+            existingTask.assignedUserId = updatedTask.assignedUserId;
+            existingTask.title = updatedTask.title;
+            existingTask.description = updatedTask.description;
+            existingTask.state = updatedTask.state;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+
         [HttpDelete("delete-task/{id}")]
         public async Task<IActionResult> DeleteTask(int id)
         {

@@ -29,8 +29,8 @@ export class DashboardComponent implements OnInit {
         name: 'Project 1', 
         description: 'Description for Project 1',
         tasks: [
-          { id: 1, title: 'Task 1', assignTo: 'User 1', description: 'Description for Task 1' },
-          { id: 2, title: 'Task 2', assignTo: 'User 2', description: 'Description for Task 2' },
+          { id: 1, title: 'Task 1', assignTo: 'User 1', description: 'Description for Task 1',state:'To Do' },
+          { id: 2, title: 'Task 2', assignTo: 'User 2', description: 'Description for Task 2',state:'To Do' },
         ]
       },
       { 
@@ -38,8 +38,8 @@ export class DashboardComponent implements OnInit {
         name: 'Project 2', 
         description: 'Description for Project 2',
         tasks: [
-          { id: 3, title: 'Task 3', assignTo: 'User 1', description: 'Description for Task 3' },
-          { id: 4, title: 'Task 4', assignTo: 'User 3', description: 'Description for Task 4' },
+          { id: 3, title: 'Task 3', assignTo: 'User 1', description: 'Description for Task 3',state:'To Do' },
+          { id: 4, title: 'Task 4', assignTo: 'User 3', description: 'Description for Task 4',state:'To Do' },
         ]
       },
       { 
@@ -47,8 +47,8 @@ export class DashboardComponent implements OnInit {
         name: 'Project 3', 
         description: 'Description for Project 3',
         tasks: [
-          { id: 5, title: 'Task 5', assignTo: 'User 1', description: 'Description for Task 5' },
-          { id: 6, title: 'Task 6', assignTo: 'User 3', description: 'Description for Task 6' },
+          { id: 5, title: 'Task 5', assignTo: 'User 1', description: 'Description for Task 5',state:'To Do' },
+          { id: 6, title: 'Task 6', assignTo: 'User 3', description: 'Description for Task 6',state:'To Do' },
         ]
       },
       { 
@@ -56,8 +56,8 @@ export class DashboardComponent implements OnInit {
         name: 'Project 4', 
         description: 'Description for Project 4',
         tasks: [
-          { id: 7, title: 'Task 7', assignTo: 'User 1', description: 'Description for Task 7' },
-          { id: 8, title: 'Task 8', assignTo: 'User 3', description: 'Description for Task 8' },
+          { id: 7, title: 'Task 7', assignTo: 'User 1', description: 'Description for Task 7',state:'To Do' },
+          { id: 8, title: 'Task 8', assignTo: 'User 3', description: 'Description for Task 8',state:'To Do' },
         ]
       },
       { 
@@ -65,8 +65,8 @@ export class DashboardComponent implements OnInit {
         name: 'Project 5', 
         description: 'Description for Project 5',
         tasks: [
-          { id: 9, title: 'Task 9', assignTo: 'User 1', description: 'Description for Task 9' },
-          { id: 10, title: 'Task 10', assignTo: 'User 3', description: 'Description for Task 10' },
+          { id: 9, title: 'Task 9', assignTo: 'User 1', description: 'Description for Task 9',state:'To Do' },
+          { id: 10, title: 'Task 10', assignTo: 'User 3', description: 'Description for Task 10',state:'To Do' },
         ]
       },
     ];

@@ -70,19 +70,19 @@ export class ProjectDetailsComponent implements OnInit {
   private mockTaskColumns(): void {
     this.taskColumns = [
       { name: 'To Do', tasks: [
-          { id: 1, title: 'Task 1', assignTo: 'Marcel', description: 'nimic' },
-          { id: 2, title: 'Task 2', assignTo: 'Marcel', description: 'nimic' },
-          { id: 3, title: 'Task 3', assignTo: 'Marcel', description: 'nimic' },
+          { id: 1, title: 'Task 1', assignTo: 'Marcel', description: 'nimic',state:'To Do' },
+          { id: 2, title: 'Task 2', assignTo: 'Marcel', description: 'nimic',state:'To Do' },
+          { id: 3, title: 'Task 3', assignTo: 'Marcel', description: 'nimic',state:'To Do' },
         ]
       },
       { name: 'In Progress', tasks: [
-          { id: 4, title: 'Task 4', assignTo: 'Marcel', description: 'nimic' },
-          { id: 5, title: 'Task 5', assignTo: 'Marcel', description: 'nimic' },
+          { id: 4, title: 'Task 4', assignTo: 'Marcel', description: 'nimic',state:'To Do' },
+          { id: 5, title: 'Task 5', assignTo: 'Marcel', description: 'nimic',state:'To Do' },
         ]
       },
       { name: 'Done', tasks: [
-        { id: 6, title: 'Task 6', assignTo: 'Marcel', description: 'nimic' },
-        { id: 7, title: 'Task 7', assignTo: 'Marcel', description: 'nimic' },
+        { id: 6, title: 'Task 6', assignTo: 'Marcel', description: 'nimic',state:'To Do' },
+        { id: 7, title: 'Task 7', assignTo: 'Marcel', description: 'nimic',state:'To Do' },
       ] },
     ];
   }

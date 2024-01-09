@@ -10,7 +10,7 @@ import { Task } from '../shared/model/task.model';
 })
 
 export class TaskComponent implements OnInit {
-  task: Task = { id: 1, title: '', assignTo: '', description: '' };
+  task: Task = { id: 1, title: '', assignTo: '', description: '', state: '' };
 
   constructor(
     private dialogRef: MatDialogRef<TaskComponent>,
