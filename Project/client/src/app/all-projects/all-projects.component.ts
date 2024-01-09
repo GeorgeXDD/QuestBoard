@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from '../shared/model/user.model';
 import { UserService } from '../shared/services/user.service';
 
 @Component({

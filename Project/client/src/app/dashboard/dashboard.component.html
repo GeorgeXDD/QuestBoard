@@ -8,7 +8,7 @@
     <div *ngFor="let project of projects.slice(0, 5)" class="col-md-4">
       <div class="card mb-3" clickable (click)="navigateToProjectDetail(project.id)">
         <div class="card-body">
-          <h5 class="card-title">{{ project.name }}</h5>
+          <h5 class="card-title">{{ project.title }}</h5>
           <p class="card-text">{{ project.description }}</p>
         </div>
       </div>
@@ -31,20 +31,19 @@
           <div class="col">Task Title</div>
           <div class="col">Task Description</div>
           <div class="col">Assigned To</div>
+          <div class="col">State</div>
         </div>
       </div>
     </div>
 
-    <div *ngFor="let project of projects">
-      <div *ngFor="let task of project.tasks" class="card" (click)="openTaskPopup(task)">
+      <div *ngFor="let task of tasks" class="card" (click)="editTask(task)">
         <div class="card-body">
           <div class="row">
             <div class="col">{{ task.title }}</div>
             <div class="col">{{ task.description }}</div>
-            <div class="col">{{ task.assignTo }}</div>
+            <div class="col">{{ task.assignedUserId }}</div>
+            <div class="col">{{ task.state }}</div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </div>

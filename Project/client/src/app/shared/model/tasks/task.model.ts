@@ -1,7 +1,7 @@
-export interface Task {
+export interface TaskModel {
     id: number;
     title: string;
-    assignTo: string;
+    assignedUserId: string;
     description: string;
     state: string;
   }

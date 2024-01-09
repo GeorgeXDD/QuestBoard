@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../model/user.model';
+import { UserModel } from '../model/users/user.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class UserService {
 
   public basePath = "http://localhost:5000/api/Users";
   
-  public ApiUsersGetAll(): Observable<User[]>{
-    return this.http.get<User[]>(this.basePath);
+  public ApiUsersGetAll(): Observable<UserModel[]>{
+    return this.http.get<UserModel[]>(this.basePath);
   }
 }

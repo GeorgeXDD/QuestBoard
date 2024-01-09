@@ -1,24 +1,32 @@
 <div class="overlay"></div>
 <div class="task-popup-container">
   <div class="task-popup">
-    <h2>{{ data.isEditMode ? 'Edit Task' : 'Create Task' }}</h2>
-    <form>
+    <h2 *ngIf="data.mode === 'new'">Create Task</h2>
+    <h2 *ngIf="data.mode === 'edit'">Update Task</h2>
+    <form [formGroup]="taskForm">
       <div class="mb-3">
         <label for="taskTitle" class="form-label">Task Title:</label>
-        <input type="text" class="form-control" id="taskTitle" [(ngModel)]="task.title" />
+        <input type="text" class="form-control" id="taskTitle" formControlName="title" />
       </div>
 
       <div class="mb-3">
-        <label for="assignTo" class="form-label">Assign To:</label>
-        <input type="text" class="form-control" id="assignTo" [(ngModel)]="task.assignTo" />
+        <label for="assignedUserId" class="form-label">Assign To:</label>
+        <input type="text" class="form-control" id="assignedUserId" formControlName="assignedUserId" />
       </div>
 
       <div class="mb-3">
         <label for="description" class="form-label">Description:</label>
-        <textarea class="form-control" id="description" [(ngModel)]="task.description"></textarea>
+        <textarea class="form-control" id="description" formControlName="description"></textarea>
       </div>
 
-      <button type="button" class="btn btn-primary" (click)="saveTask()">{{ data.isEditMode ? 'Update Task' : 'Create Task' }}</button>
+      <div class="mb-3">
+        <label for="state" class="form-label">State:</label>
+        <textarea class="form-control" id="state" formControlName="state"></textarea>
+      </div>
+
+      <button type="button" class="btn btn-primary" (click)="saveTask()" *ngIf="data.mode === 'new'">Create Task</button>
+      <button type="button" class="btn btn-primary" (click)="saveTask()" *ngIf="data.mode === 'edit'">Update Task</button>
+      <button type="button" class="btn btn-danger" (click)="closePopup()">Cancel</button>
     </form>
   </div>
 </div>
