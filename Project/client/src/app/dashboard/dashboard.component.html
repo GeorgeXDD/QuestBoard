@@ -36,7 +36,7 @@
       </div>
     </div>
 
-      <div *ngFor="let task of tasks" class="card" (click)="editTask(task)">
+      <div *ngFor="let task of tasks.slice(0,10)" class="card" (click)="editTask(task)">
         <div class="card-body">
           <div class="row">
             <div class="col">{{ task.title }}</div>
@@ -44,6 +44,11 @@
             <div class="col">{{ task.assignedUserId }}</div>
             <div class="col">{{ task.state }}</div>
           </div>
+        </div>
+      </div>
+      <div class="card card-body card-show-all" clickable (click)="navigateToTasks()">
+        <div class="row">
+          <div class="col">Click to see all tasks.</div>
         </div>
       </div>
 </div>

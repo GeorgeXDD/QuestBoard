@@ -47,8 +47,7 @@ export class TaskComponent implements OnInit {
         title: this.data.task.title,
         assignedUserId: this.data.task.assignedUserId,
         description: this.data.task.description,
-        state: this.data.task.state,
-        projectId: this.data.projectId        
+        state: this.data.task.state,   
       });
     }else if (this.data.mode != 'edit' && this.data.task) {
       this.taskForm.setValue({
@@ -65,11 +64,9 @@ export class TaskComponent implements OnInit {
     const formData = this.taskForm.value;
     if (this.data.mode === 'edit') {
       this.taskService.ApiTaskPut(formData, this.data.taskId).subscribe(updatedTask => {
-        console.log('Task updated:', updatedTask);
       });
     } else if(this.data.mode != 'edit') {
       this.taskService.ApiTaskPost(formData).subscribe(newTask => {
-        console.log('New task created:', newTask);
       });
     }else{
       console.log("idk")

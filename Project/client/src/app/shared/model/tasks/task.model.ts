@@ -3,6 +3,13 @@ export interface TaskModel {
     title: string;
     assignedUserId: string;
     description: string;
-    state: string;
+    state: TaskState;
     projectId: number;
+  }
+
+  export enum TaskState {
+    ToDo = 'ToDo',
+    InProgress = 'InProgress',
+    InReview = 'InReview',
+    Done = 'Done'
   }

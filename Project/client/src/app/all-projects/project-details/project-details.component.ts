@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskComponent } from 'src/app/task/task.component';
-import { TaskModel } from 'src/app/shared/model/tasks/task.model';
+import { TaskModel, TaskState } from 'src/app/shared/model/tasks/task.model';
+import { ProjectService } from 'src/app/shared/services/project.service';
+import { ProjectModel } from 'src/app/shared/model/projects/project.model';
+import { TaskService } from 'src/app/shared/services/task.service';
 
 interface TaskColumn {
   name: string;
+  state: string;
   tasks: TaskModel[];
 }
 
@@ -16,79 +20,112 @@ interface TaskColumn {
 })
 export class ProjectDetailsComponent implements OnInit {
   projectId!: number;
+  project!: ProjectModel;
   taskColumns: TaskColumn[] = [];
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog) {
-    this.ngOnInit();
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+    private projectService: ProjectService,
+    private taskService: TaskService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.projectId = Number(params.get('id'));
-      this.mockTaskColumns();
+      this.loadProjectDetails();
     });
   }
+
+  loadProjectDetails(): void {
+    this.projectService.ApiGetProject(this.projectId.toString()).subscribe(
+      (project) => {
+        this.project = project;
+        this.taskColumns = this.mapTasksToColumns(project.tasks);
+      },
+      (error) => {
+        console.error('Error loading project details:', error);
+      }
+    );
+  }
+
+  mapTasksToColumns(tasks: TaskModel[]): TaskColumn[] {
+    const columns: TaskColumn[] = [
+      { name: 'To Do', state: 'ToDo', tasks: tasks.filter(task => task.state === 'ToDo') },
+      { name: 'In Progress', state: 'InProgress', tasks: tasks.filter(task => task.state === 'InProgress') },
+      { name: 'Done', state: 'Done', tasks: tasks.filter(task => task.state === 'Done') },
+    ];
+    return columns;
+  }
+  
 
   openCreateTaskDialog(task?: TaskModel): void {
     const dialogRef = this.dialog.open(TaskComponent, {
       width: '400px',
-      data: { 
-        task, 
-        mode:"new", 
-        projectId: this.projectId 
+      data: {
+        task,
+        mode: 'new',
+        projectId: this.projectId
       }
     });
-  
-    dialogRef.afterClosed().subscribe(() => {
 
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
     });
   }
 
+  openEditTaskDialog(task?: TaskModel): void {
+    const dialogRef = this.dialog.open(TaskComponent, {
+      width: '400px',
+      data: {
+        task,
+        mode: 'edit',
+        taskId: task!.id 
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
   onTaskMoved(event: any): void {
     const task: TaskModel = event.item.data;
     const currentIndex: number = event.currentIndex;
   
-    const sourceColumn: TaskColumn = this.taskColumns.find((column) => column.tasks.includes(task)) || { name: '', tasks: [] };
-    const targetColumn: TaskColumn = this.taskColumns.find((column) => column.name === event.container.id) || { name: '', tasks: [] };
+    const sourceColumn: TaskColumn = this.taskColumns.find((column) => column.tasks.includes(task)) || { name: '', state: '', tasks: [] };
+    const targetColumn: TaskColumn = this.taskColumns.find((column) => column.name === event.container.id) || { name: '', state: '', tasks: [] };
   
     this.removeFromColumn(task, sourceColumn);
     this.addToColumn(task, targetColumn, currentIndex);
+  
+    this.updateTaskState(task, targetColumn);
+
+    this.cdr.detectChanges();
+  }
+
+  updateTaskState(task: TaskModel, targetColumn: TaskColumn): void {
+    const taskId = task.id;
+    const updatedTask = { ...task, state: targetColumn.state as TaskState };
+  
+    this.taskService.ApiTaskPut(updatedTask, taskId).subscribe( response =>
+      this.ngOnInit()
+    );
   }
 
   connectedLists(currentList: string): string[] {
     const otherLists = this.taskColumns.filter(column => column.name !== currentList).map(column => column.name);
     return otherLists;
   }
-  
-  
+
   private removeFromColumn(task: TaskModel, sourceColumn: TaskColumn): void {
     const taskIndex = sourceColumn.tasks.indexOf(task);
     if (taskIndex !== -1) {
       sourceColumn.tasks.splice(taskIndex, 1);
     }
   }
-  
+
   private addToColumn(task: TaskModel, targetColumn: TaskColumn, index: number): void {
     targetColumn.tasks.splice(index, 0, task);
-  }
-
-  private mockTaskColumns(): void {
-    this.taskColumns = [
-      { name: 'To Do', tasks: [
-          { id: 1, title: 'Task 1', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1 },
-          { id: 2, title: 'Task 2', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1 },
-          { id: 3, title: 'Task 3', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1 },
-        ]
-      },
-      { name: 'In Progress', tasks: [
-          { id: 4, title: 'Task 4', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1  },
-          { id: 5, title: 'Task 5', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1  },
-        ]
-      },
-      { name: 'Done', tasks: [
-        { id: 6, title: 'Task 6', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1  },
-        { id: 7, title: 'Task 7', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1  },
-      ] },
-    ];
   }
 }

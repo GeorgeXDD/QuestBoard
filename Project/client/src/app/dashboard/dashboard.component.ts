@@ -30,7 +30,6 @@ export class DashboardComponent implements OnInit {
     this.projectService.ApiProjectGetAll().subscribe(projects => {
       this.projects = projects;
     })
-    console.log(this.projects);
   }
 
 
@@ -40,6 +39,10 @@ export class DashboardComponent implements OnInit {
 
   navigateToProjects(): void {
     this.router.navigate(['/projects']);
+  }
+
+  navigateToTasks(): void {
+    this.router.navigate(['/backlog']);
   }
 
   editTask(task: TaskModel): void {
