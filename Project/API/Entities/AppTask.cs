@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Security.Principal;
 
 namespace API.Entities
 {
@@ -9,13 +10,13 @@ namespace API.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string assignedUserId { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-        public TaskState state { get; set; }
-        public int projectId { get; set; }
+        public string AssignedUserId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public TaskState State { get; set; }
+        [ForeignKey(nameof(Project))]
+        public int ProjectId { get; set; }
         [JsonIgnore]
-        public Project project { get; set; }
-
+        public Project Project { get; set; }
     }
 }

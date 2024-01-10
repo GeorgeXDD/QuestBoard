@@ -1,11 +1,12 @@
 ﻿using API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace API.Data
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
 
@@ -16,11 +17,15 @@ namespace API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AppTask>()
-                .HasOne(t => t.project)
+                .HasOne(t => t.Project)
                 .WithMany(p => p.Tasks)
-                .HasForeignKey(t => t.projectId)
+                .HasForeignKey(t => t.ProjectId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired(false);
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=taskapp.db");
         }
     }
 }

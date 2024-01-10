@@ -53,10 +53,10 @@ namespace API.Controllers
                 return NotFound(new { Message = "Task not found" });
             }
 
-            existingTask.assignedUserId = updatedTask.assignedUserId;
-            existingTask.title = updatedTask.title;
-            existingTask.description = updatedTask.description;
-            existingTask.state = updatedTask.state;
+            existingTask.AssignedUserId = updatedTask.AssignedUserId;
+            existingTask.Title = updatedTask.Title;
+            existingTask.Description = updatedTask.Description;
+            existingTask.State = updatedTask.State;
 
             await _context.SaveChangesAsync();
 

@@ -2,6 +2,7 @@
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240110143937_UpdateModels5")]
+    partial class UpdateModels5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -22,24 +25,24 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AssignedUserId")
+                    b.Property<string>("assignedUserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("description")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("projectId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("State")
+                    b.Property<int>("state")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("title")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("projectId");
 
                     b.ToTable("Tasks");
                 });
@@ -70,10 +73,10 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("title")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -83,12 +86,12 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppTask", b =>
                 {
-                    b.HasOne("API.Entities.Project", "Project")
+                    b.HasOne("API.Entities.Project", "project")
                         .WithMany("Tasks")
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("projectId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("Project");
+                    b.Navigation("project");
                 });
 
             modelBuilder.Entity("API.Entities.Project", b =>

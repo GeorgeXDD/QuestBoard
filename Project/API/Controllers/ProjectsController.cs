@@ -21,7 +21,9 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
-            var projects = await _context.Projects.ToListAsync();
+            var projects = await _context.Projects
+                .Include(p => p.Tasks)
+                .ToListAsync();
 
             return projects;
         }
@@ -29,7 +31,9 @@ namespace API.Controllers
         [HttpGet("{id}")] // /api/project/1
         public async Task<ActionResult<Project>> GetProject(int id)
         {
-            return await _context.Projects.FindAsync(id);
+            return await _context.Projects
+                .Include(p => p.Tasks)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         [HttpPost]
@@ -51,8 +55,8 @@ namespace API.Controllers
                 return NotFound(new { Message = "Project not found" });
             }
 
-            existingProject.title = updatedProject.title;
-            existingProject.description = updatedProject.description;
+            existingProject.Title = updatedProject.Title;
+            existingProject.Description = updatedProject.Description;
             existingProject.Tasks = updatedProject.Tasks;
 
             await _context.SaveChangesAsync();
