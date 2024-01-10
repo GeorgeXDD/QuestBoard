@@ -1,4 +1,6 @@
-﻿namespace API.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace API.Entities
 {
     public class Project
     {

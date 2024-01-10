@@ -53,6 +53,7 @@ namespace API.Controllers
 
             existingProject.title = updatedProject.title;
             existingProject.description = updatedProject.description;
+            existingProject.Tasks = updatedProject.Tasks;
 
             await _context.SaveChangesAsync();
 

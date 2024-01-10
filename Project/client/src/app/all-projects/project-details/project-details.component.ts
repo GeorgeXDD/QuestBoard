@@ -18,24 +18,29 @@ export class ProjectDetailsComponent implements OnInit {
   projectId!: number;
   taskColumns: TaskColumn[] = [];
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog) {}
-
-  openCreateTaskDialog(task?: TaskModel): void {
-    const dialogRef = this.dialog.open(TaskComponent, {
-      width: '400px',
-      data: { task, isEditMode: !!task }
-    });
-  
-    dialogRef.afterClosed().subscribe(() => {
-
-    });
+  constructor(private route: ActivatedRoute, private dialog: MatDialog) {
+    this.ngOnInit();
   }
-  
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.projectId = Number(params.get('id'));
       this.mockTaskColumns();
+    });
+  }
+
+  openCreateTaskDialog(task?: TaskModel): void {
+    const dialogRef = this.dialog.open(TaskComponent, {
+      width: '400px',
+      data: { 
+        task, 
+        mode:"new", 
+        projectId: this.projectId 
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(() => {
+
     });
   }
 
@@ -70,19 +75,19 @@ export class ProjectDetailsComponent implements OnInit {
   private mockTaskColumns(): void {
     this.taskColumns = [
       { name: 'To Do', tasks: [
-          { id: 1, title: 'Task 1', assignedUserId: 'Marcel', description: 'nimic',state:'To Do' },
-          { id: 2, title: 'Task 2', assignedUserId: 'Marcel', description: 'nimic',state:'To Do' },
-          { id: 3, title: 'Task 3', assignedUserId: 'Marcel', description: 'nimic',state:'To Do' },
+          { id: 1, title: 'Task 1', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1 },
+          { id: 2, title: 'Task 2', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1 },
+          { id: 3, title: 'Task 3', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1 },
         ]
       },
       { name: 'In Progress', tasks: [
-          { id: 4, title: 'Task 4', assignedUserId: 'Marcel', description: 'nimic',state:'To Do' },
-          { id: 5, title: 'Task 5', assignedUserId: 'Marcel', description: 'nimic',state:'To Do' },
+          { id: 4, title: 'Task 4', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1  },
+          { id: 5, title: 'Task 5', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1  },
         ]
       },
       { name: 'Done', tasks: [
-        { id: 6, title: 'Task 6', assignedUserId: 'Marcel', description: 'nimic',state:'To Do' },
-        { id: 7, title: 'Task 7', assignedUserId: 'Marcel', description: 'nimic',state:'To Do' },
+        { id: 6, title: 'Task 6', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1  },
+        { id: 7, title: 'Task 7', assignedUserId: 'Marcel', description: 'nimic',state:'To Do', projectId: 1  },
       ] },
     ];
   }

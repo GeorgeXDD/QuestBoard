@@ -28,9 +28,10 @@ export class TaskService {
       `${this.basePath}`,
       {
         title: task.title,
-        assignTo: task.assignedUserId,
+        assignedUserId: task.assignedUserId,
         description: task.description,
-        state: task.state
+        state: task.state,
+        projectId: task.projectId
       }
     )
   }

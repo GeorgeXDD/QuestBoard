@@ -14,16 +14,27 @@ export class TaskComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<TaskComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { task?: TaskModel, mode: string, taskId: any },
+    @Inject(MAT_DIALOG_DATA) public data: { task?: TaskModel, mode: string, taskId: any, projectId: any },
     private taskService: TaskService,
     private fb: FormBuilder
   ) {
-    this.taskForm = this.fb.group({
-      title: ['', Validators.required],
-      assignedUserId: ['', Validators.required],
-      description: ['', Validators.required],
-      state: ['', Validators.required]
-    });
+    console.log(this.data.projectId);
+    if (this.data.mode === 'edit' && this.data.task) {
+      this.taskForm = this.fb.group({
+        title: ['', Validators.required],
+        assignedUserId: ['', Validators.required],
+        description: ['', Validators.required],
+        state: ['', Validators.required],
+      });
+    }else{
+      this.taskForm = this.fb.group({
+        title: ['', Validators.required],
+        assignedUserId: ['', Validators.required],
+        description: ['', Validators.required],
+        state: ['', Validators.required],
+        projectId: [this.data.projectId, Validators.required]
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -36,7 +47,16 @@ export class TaskComponent implements OnInit {
         title: this.data.task.title,
         assignedUserId: this.data.task.assignedUserId,
         description: this.data.task.description,
-        state: this.data.task.state
+        state: this.data.task.state,
+        projectId: this.data.projectId        
+      });
+    }else if (this.data.mode != 'edit' && this.data.task) {
+      this.taskForm.setValue({
+        title: this.data.task.title,
+        assignedUserId: this.data.task.assignedUserId,
+        description: this.data.task.description,
+        state: this.data.task.state,
+        projectId: this.data.projectId    
       });
     }
   }
@@ -47,10 +67,12 @@ export class TaskComponent implements OnInit {
       this.taskService.ApiTaskPut(formData, this.data.taskId).subscribe(updatedTask => {
         console.log('Task updated:', updatedTask);
       });
-    } else {
+    } else if(this.data.mode != 'edit') {
       this.taskService.ApiTaskPost(formData).subscribe(newTask => {
         console.log('New task created:', newTask);
       });
+    }else{
+      console.log("idk")
     }
     this.dialogRef.close();
   }

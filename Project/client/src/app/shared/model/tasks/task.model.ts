@@ -4,4 +4,5 @@ export interface TaskModel {
     assignedUserId: string;
     description: string;
     state: string;
+    projectId: number;
   }

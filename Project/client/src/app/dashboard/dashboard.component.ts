@@ -48,7 +48,8 @@ export class DashboardComponent implements OnInit {
       data: { 
         task: task, 
         mode: 'edit',
-        taskId: task.id }
+        taskId: task.id 
+      }
     });
 
     dialogRef.afterClosed().subscribe(() => {
