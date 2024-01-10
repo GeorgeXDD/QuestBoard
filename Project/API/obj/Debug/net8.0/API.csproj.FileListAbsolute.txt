@@ -253,3 +253,5 @@ C:\Users\ROG\Desktop\faculta_anu3\web\Project\API\obj\Debug\net8.0\refint\API.dl
 C:\Users\ROG\Desktop\faculta_anu3\web\Project\API\obj\Debug\net8.0\API.pdb
 C:\Users\ROG\Desktop\faculta_anu3\web\Project\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\ROG\Desktop\faculta_anu3\web\Project\API\obj\Debug\net8.0\ref\API.dll
+C:\Users\ROG\Desktop\faculta_anu3\web\Project\API\bin\Debug\net8.0\Castle.Core.dll
+C:\Users\ROG\Desktop\faculta_anu3\web\Project\API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll

@@ -44,6 +44,26 @@ namespace API.Controllers
             }
             return Unauthorized(new { Message = "Invalid credentials" });
         }
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        {   
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == request.Username);
+            if (existingUser != null)
+            {
+                return BadRequest(new { Message = "Username already exists" });
+            }
+
+
+            var newUser = new AppUser
+            {
+                UserName = request.Username,
+                Password = request.Password,
+                Email=request.Email
+            };
+            _context.Users.Add(newUser);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetUser), new { id = newUser.Id }, newUser);
+        }
 
 
     }
