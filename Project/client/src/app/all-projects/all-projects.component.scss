@@ -1,0 +1,40 @@
+.culoare{
+    color:#161A30;
+  }
+  
+  .container-fluid mt-4 {
+    cursor: default;
+  }
+  
+  .card:hover {
+    cursor: pointer;
+  }
+  
+  .card[clickable] {
+    cursor: pointer;
+  }
+  
+  .card[clickable]:hover {
+    background-color: #f0f0f0;
+    color: #161a30;
+  }
+  
+  .card {
+    background-color: #161a30;
+    color: #b6bbc4;
+  }
+  
+  .card-show-all {
+    background-color: #f0f0f0!important;
+    color: #161a30!important ; 
+  }
+  
+  .card-show-all:hover {
+    background-color: #161a30!important ;
+    color: #f0f0f0!important ;
+  }
+  
+  .wrapper{
+    background-color: #9DB2BF;
+    padding: 20px;
+  }

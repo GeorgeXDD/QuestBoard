@@ -1,3 +1,12 @@
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+}
+
 .culoare{
   color:#161A30;
 }
@@ -28,14 +37,22 @@
 .card {
   background-color: #161a30;
   color: #b6bbc4;
+  margin-bottom: 3px;
 }
 
 .card-show-all {
   background-color: #f0f0f0!important;
   color: #161a30!important ; 
+  border: 1px solid #dee2e6;
 }
 
 .card-show-all:hover {
   background-color: #161a30!important ;
   color: #f0f0f0!important ;
+}
+
+.wrapper{
+  width: 100%;
+  background-color: #9DB2BF;
+  padding: 20px;
 }

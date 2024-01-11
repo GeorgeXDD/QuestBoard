@@ -1,54 +1,56 @@
 <div class="container-fluid mt-4 dashboard-container">
-  <h1 class="text-center culoare">QuestBoard</h1>
+  <!-- <h1 class="text-center culoare">QuestBoard</h1> -->
 
-  <h2 class="mt-4 culoare">Dashboard</h2>
+  <h2 class="mt-4 culoare centered">Dashboard</h2>
 
-  <h4 class="culoare">Projects</h4>
-  <div class="row">
-    <div *ngFor="let project of projects.slice(0, 5)" class="col-md-4">
-      <div class="card mb-3" clickable (click)="navigateToProjectDetail(project.id)">
-        <div class="card-body">
-          <h5 class="card-title">{{ project.title }}</h5>
-          <p class="card-text">{{ project.description }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card mb-3 card-show-all" clickable (click)="navigateToProjects()">
-        <div class="card-body">
-          <h5 class="card-title">Show all</h5>
-          <p class="card-text">Click to see all projects.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <h4 class="culoare">Tasks</h4>
-  <div class="task-list">
-    <div class="card task-header">
-      <div class="card-body">
-        <div class="row">
-          <div class="col">Task Title</div>
-          <div class="col">Task Description</div>
-          <div class="col">Assigned To</div>
-          <div class="col">State</div>
-        </div>
-      </div>
-    </div>
-
-      <div *ngFor="let task of tasks.slice(0,10)" class="card" (click)="editTask(task)">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">{{ task.title }}</div>
-            <div class="col">{{ task.description }}</div>
-            <div class="col">{{ task.assignedUserId }}</div>
-            <div class="col">{{ task.state }}</div>
+  <div class="wrapper">
+    <h4 class="culoare centered">Projects</h4>
+    <div class="row">
+      <div *ngFor="let project of projects.slice(0, 5)" class="col-md-4">
+        <div class="card mb-3" clickable (click)="navigateToProjectDetail(project.id)">
+          <div class="card-body">
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description }}</p>
           </div>
         </div>
       </div>
-      <div class="card card-body card-show-all" clickable (click)="navigateToTasks()">
-        <div class="row">
-          <div class="col">Click to see all tasks.</div>
+      <div class="col-md-4">
+        <div class="card mb-3 card-show-all" clickable (click)="navigateToProjects()">
+          <div class="card-body">
+            <h5 class="card-title">Show all</h5>
+            <p class="card-text">Click to see all projects.</p>
+          </div>
         </div>
       </div>
+    </div>
+
+    <h4 class="culoare centered">Tasks</h4>
+    <div class="task-list">
+      <div class="card task-header">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">Task Title</div>
+            <div class="col">Task Description</div>
+            <div class="col">Assigned To</div>
+            <div class="col">State</div>
+          </div>
+        </div>
+      </div>
+
+        <div *ngFor="let task of tasks.slice(0,10)" class="card" (click)="editTask(task)">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">{{ task.title }}</div>
+              <div class="col">{{ task.description }}</div>
+              <div class="col">{{ task.assignedUserId }}</div>
+              <div class="col">{{ task.state }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-body card-show-all" clickable (click)="navigateToTasks()">
+          <div class="row">
+            <div class="col">Click to see all tasks.</div>
+          </div>
+        </div>
+    </div>
 </div>

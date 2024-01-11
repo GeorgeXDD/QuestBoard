@@ -1,13 +1,25 @@
-import { Component } from '@angular/core';
-import { UserService } from '../shared/services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProjectModel } from '../shared/model/projects/project.model';
+import { ProjectService } from '../shared/services/project.service';
 
 @Component({
   selector: 'app-all-projects',
   templateUrl: './all-projects.component.html',
   styleUrls: ['./all-projects.component.scss']
 })
-export class AllProjectsComponent {
-  constructor(public user: UserService){
-    console.log(user.ApiUsersGetAll().subscribe(user => console.log(user)));
+export class AllProjectsComponent implements OnInit {
+  projects: ProjectModel[] = [];
+
+  constructor(private router: Router, private projectService: ProjectService) {}
+
+  ngOnInit(): void {
+    this.projectService.ApiProjectGetAll().subscribe(projects => {
+      this.projects = projects;
+    });
+  }
+
+  navigateToProjectDetail(projectId: number): void {
+    this.router.navigate(['/project', projectId]);
   }
 }

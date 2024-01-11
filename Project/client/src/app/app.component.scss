@@ -12,3 +12,16 @@ router-outlet {
   color: #161A30
 }
   
+.imgheader {
+  height: 25em;
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.clickable{
+  cursor: pointer;
+}

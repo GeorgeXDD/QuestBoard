@@ -4,10 +4,15 @@
     <nav class="culoare">
       <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <a routerLink="/projects" routerLinkActive="active">Projects</a>
-      <a routerLink="/backlog" routerLinkActive="active">Backlog</a>
-      <a routerLink="/login" routerLinkActive="active">Login</a>
+      <a routerLink="/backlog" routerLinkActive="active">My Tasks</a>
+      <ng-container *ngIf="isLoggedIn(); else loginLink">
+        <a (click)="logout()" class="clickable">Logout</a>
+      </ng-container>
+      <ng-template #loginLink>
+        <a routerLink="/login" routerLinkActive="active" class="clickable">Login</a>
+      </ng-template>
     </nav>
   </div>
+  <img class="imgheader" src="../assets/image/logo2.png">
   <router-outlet></router-outlet>
 </div>
-
