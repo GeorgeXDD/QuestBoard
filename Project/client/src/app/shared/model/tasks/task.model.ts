@@ -2,9 +2,11 @@ export interface TaskModel {
     id: number;
     title: string;
     assignedUserId: string;
+    user: string;
+    project: string;
     description: string;
     state: TaskState;
-    projectId: number;
+    projectId: string;
   }
 
   export enum TaskState {

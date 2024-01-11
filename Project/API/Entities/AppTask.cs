@@ -10,7 +10,11 @@ namespace API.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string AssignedUserId { get; set; }
+
+        [ForeignKey(nameof(AssignedUser))]
+        public int? AssignedUserId { get; set; }
+        [JsonIgnore]
+        public AppUser AssignedUser { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public TaskState State { get; set; }
@@ -18,5 +22,6 @@ namespace API.Entities
         public int ProjectId { get; set; }
         [JsonIgnore]
         public Project Project { get; set; }
+
     }
 }

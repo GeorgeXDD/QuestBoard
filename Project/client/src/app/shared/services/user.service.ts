@@ -18,6 +18,12 @@ export class UserService {
     return this.http.get<UserModel[]>(this.basePath);
   }
 
+  public ApiGetUser(id: string): Observable<UserModel | null> {
+    return this.http.get<UserModel | null>(
+      `${this.basePath}/${id}`
+    );
+  }
+
   public ApiUserLogin(loginData: { username: string; password: string }): Observable<any> {
     return this.http.post(`${this.basePath}/login`, loginData);
   }

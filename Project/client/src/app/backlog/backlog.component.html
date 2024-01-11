@@ -1,28 +1,27 @@
 <div class="container-fluid mt-4 dashboard-container">
-    <h2 class="mt-4 culoare centered">Backlog</h2>
+    <h2 class="mt-4 culoare centered">My Tasks</h2>
   
-    <div class="wrapper">
-      <h4 class="culoare centered">Tasks</h4>
-      <div class="task-list">
-        <div class="card task-header">
-          <div class="card-body">
-            <div class="row">
-              <div class="col">Task Title</div>
-              <div class="col">Task Description</div>
-              <div class="col">Assigned To</div>
-              <div class="col">State</div>
-            </div>
+    <div class="task-list">
+      <div class="card task-header">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">Task Title</div>
+            <div class="col">Task Description</div>
+            <div class="col">Assigned To</div>
+            <div class="col">State</div>
+            <div class="col">Project</div>
           </div>
         </div>
+      </div>
   
-        <div *ngFor="let task of tasks" class="card" (click)="editTask(task)">
-          <div class="card-body">
-            <div class="row">
-              <div class="col">{{ task.title }}</div>
-              <div class="col">{{ task.description }}</div>
-              <div class="col">{{ task.assignedUserId }}</div>
-              <div class="col">{{ task.state }}</div>
-            </div>
+      <div *ngFor="let task of tasks" class="card" (click)="editTask(task)">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">{{ task.title }}</div>
+            <div class="col">{{ task.description }}</div>
+            <div class="col">{{ task.user }}</div>
+            <div class="col">{{ task.state }}</div>
+            <div class="col">{{ task.project }}</div>
           </div>
         </div>
       </div>

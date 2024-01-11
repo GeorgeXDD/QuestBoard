@@ -22,6 +22,14 @@ namespace API.Data
                 .HasForeignKey(t => t.ProjectId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired(false);
+
+            modelBuilder.Entity<AppTask>()
+                .HasOne(t => t.AssignedUser)
+                .WithMany(u => u.Tasks)
+                .HasForeignKey(t => t.AssignedUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

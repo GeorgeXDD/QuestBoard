@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProjectModel } from '../shared/model/projects/project.model';
 import { TaskModel } from '../shared/model/tasks/task.model';
 import { ProjectService } from '../shared/services/project.service';
+import { SharedService } from '../shared/services/shared.service';
 import { TaskService } from '../shared/services/task.service';
 import { TaskComponent } from '../task/task.component';
 
@@ -19,17 +20,19 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router,
     private dialog: MatDialog,
     private taskService: TaskService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private sharedService: SharedService
     ) {}
 
   ngOnInit(): void {
     this.taskService.ApiTaskGetAll().subscribe(tasks => {
       this.tasks= tasks;
-      }
-    )
+      this.sharedService.fetchUserAndProjectDetails(this.tasks);
+    });
+    
     this.projectService.ApiProjectGetAll().subscribe(projects => {
       this.projects = projects;
-    })
+    });
   }
 
 

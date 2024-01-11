@@ -21,7 +21,9 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-            var users = await _context.Users.ToListAsync();
+            var users = await _context.Users
+                .Include(u => u.Tasks)
+                .ToListAsync();
 
             return users;
         }
@@ -29,8 +31,18 @@ namespace API.Controllers
         [HttpGet("{id}")] // /api/users/1
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
-            return await _context.Users.FindAsync(id);
+            var user = await _context.Users
+                .Include(u => u.Tasks)
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
         }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
