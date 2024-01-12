@@ -1,3 +1,17 @@
+.project-details {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.create-task {
+  background-color: #9DB2BF;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
 .columns-container {
     display: flex;
   }
@@ -37,4 +51,19 @@
   
   .columns.done {
     order: 3;
+  }
+
+  .custom-btn {
+    background-color: #161a30;
+    color: #ffffff; 
+  }
+  
+  .custom-btn:hover {
+    background-color: #1a1f35; 
+  }
+  
+  .wrapper{
+    width: 100%;
+    background-color: #9DB2BF;
+    padding: 20px;
   }

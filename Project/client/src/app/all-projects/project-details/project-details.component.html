@@ -1,25 +1,29 @@
 <div class="container-fluid mt-4" *ngIf="project">
-  <div>
-    <h2>Project Detail</h2>
+  <div class="project-details">
+    <div class="d-flex justify-content-between">
+      <h2 class="mt-4 culoare mr-auto mb-4">Project Detail</h2>
+      <button class="btn custom-btn mb-4" style="margin-top: 1em;" (click)="openEditProjectDialog(project)">Edit Project Details</button>
+    </div>
     <p>Project ID: {{ project.id }}</p>
     <p>Title: {{ project.title }}</p>
     <p>Description: {{ project.description }}</p>
   </div>
+  <div class="wrapper">
+    <div class="d-flex justify-content-between">
+      <h2 class="mt-4 culoare mr-auto mb-4">Project Detail</h2>
+      <button class="btn custom-btn mb-4" style="margin-top: 1em;" (click)="openCreateTaskDialog()">Create New Task</button>
+    </div>
 
-  <div class="row">
-    <div *ngFor="let column of taskColumns" class="col-md-4">
-      <div class="card columns" cdkDropList [id]="column.name" [cdkDropListConnectedTo]="connectedLists(column.name)" cdkDropListOrientation="vertical" [cdkDropListData]="column.tasks" (cdkDropListDropped)="onTaskMoved($event)">
-        <h3 class="card-title">{{ column.name | titlecase }}</h3>
-        <div *ngFor="let task of column.tasks" cdkDrag [cdkDragData]="task" class="card-body" (click)="openEditTaskDialog(task)">
-          <p class="card-text">{{ task.title }}</p>
-          <p class="card-text">{{ task.description }}</p>
+    <div class="row">
+      <div *ngFor="let column of taskColumns" class="col-md-3">
+        <div class="card columns" cdkDropList [id]="column.name" [cdkDropListConnectedTo]="connectedLists(column.name)" cdkDropListOrientation="vertical" [cdkDropListData]="column.tasks" (cdkDropListDropped)="onTaskMoved($event)">
+          <h3 class="card-title">{{ column.name | titlecase }}</h3>
+          <div *ngFor="let task of column.tasks" cdkDrag [cdkDragData]="task" class="card-body" (click)="openEditTaskDialog(task)">
+            <p class="card-text">{{ task.title }}</p>
+            <p class="card-text">{{ task.description }}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div>
-    <h2>Create Task</h2>
-    <button class="btn btn-primary" (click)="openCreateTaskDialog()">Create Task</button>
   </div>
 </div>

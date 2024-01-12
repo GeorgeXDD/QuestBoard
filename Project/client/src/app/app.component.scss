@@ -22,6 +22,16 @@ router-outlet {
   padding: 0;
 }
 
+.footer {
+  background-color: #ffffff;
+  padding: 20px; 
+  text-align: center;
+}
+
+.footer-text {
+  color: #161A30; 
+}
+
 .clickable{
   cursor: pointer;
 }

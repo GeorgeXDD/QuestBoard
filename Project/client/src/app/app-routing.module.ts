@@ -6,18 +6,15 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { BacklogComponent } from './backlog/backlog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuardService } from './shared/guards/authguard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard',component: DashboardComponent},
-  { path: 'projects', component: AllProjectsComponent},
-  { path: 'project/:id', component: ProjectDetailsComponent},
-  { path: 'backlog', component: BacklogComponent },
-  // { path: 'dashboard',component: DashboardComponent,canActivate: [AuthGuardService],},
-  // { path: 'projects', component: AllProjectsComponent, canActivate: [AuthGuardService] },
-  // { path: 'project/:id', component: ProjectDetailsComponent, canActivate: [AuthGuardService] },
-  // { path: 'backlog', component: BacklogComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard',component: DashboardComponent, canActivate: [AuthGuardService]},
+  { path: 'projects', component: AllProjectsComponent,canActivate: [AuthGuardService]},
+  { path: 'project/:id', component: ProjectDetailsComponent,canActivate: [AuthGuardService]},
+  { path: 'backlog', component: BacklogComponent,canActivate: [AuthGuardService] },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 

@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 6;
 }
 
 .task-popup-container {
@@ -13,7 +13,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 6;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.3s ease;
@@ -35,4 +35,13 @@
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 0s 600000s, color 0s 600000s;
+}
+
+.custom-btn {
+  background-color: #161a30;
+  color: #ffffff; 
+}
+
+.custom-btn:hover {
+  background-color: #1a1f35; 
 }

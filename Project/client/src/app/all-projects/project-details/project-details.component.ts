@@ -6,6 +6,7 @@ import { TaskModel, TaskState } from 'src/app/shared/model/tasks/task.model';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { ProjectModel } from 'src/app/shared/model/projects/project.model';
 import { TaskService } from 'src/app/shared/services/task.service';
+import { ProjectComponent } from 'src/app/project/project.component';
 
 interface TaskColumn {
   name: string;
@@ -54,6 +55,7 @@ export class ProjectDetailsComponent implements OnInit {
     const columns: TaskColumn[] = [
       { name: 'To Do', state: 'ToDo', tasks: tasks.filter(task => task.state === 'ToDo') },
       { name: 'In Progress', state: 'InProgress', tasks: tasks.filter(task => task.state === 'InProgress') },
+      { name: 'In Review', state: 'InReview', tasks: tasks.filter(task => task.state === 'InReview') },
       { name: 'Done', state: 'Done', tasks: tasks.filter(task => task.state === 'Done') },
     ];
     return columns;
@@ -89,6 +91,22 @@ export class ProjectDetailsComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  openEditProjectDialog(project?: ProjectModel): void {
+    const dialogRef = this.dialog.open(ProjectComponent, {
+      width: '400px',
+      data: {
+        project,
+        mode: 'edit'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+
+
   onTaskMoved(event: any): void {
     const task: TaskModel = event.item.data;
     const currentIndex: number = event.currentIndex;

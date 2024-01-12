@@ -40,4 +40,10 @@ export class ProjectService {
       project
     )
   }
+
+  public ApiProjectDelete(id: number): Observable<ProjectModel>{
+    return this.http.delete<ProjectModel>(
+      `${this.basePath}/delete-project/${id}`
+    )
+  }
 }

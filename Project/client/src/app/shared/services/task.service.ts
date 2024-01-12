@@ -42,4 +42,10 @@ export class TaskService {
       task
     )
   }
+
+  public ApiTaskDelete(id: string): Observable<TaskModel>{
+    return this.http.delete<TaskModel>(
+      `${this.basePath}/delete-task/${id}`,
+    )
+  }
 }

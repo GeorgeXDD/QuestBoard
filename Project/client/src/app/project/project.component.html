@@ -1,0 +1,23 @@
+<div class="overlay"></div>
+<div class="task-popup-container">
+  <div class="task-popup">
+    <h2 *ngIf="data.mode === 'new'">Create Project</h2>
+    <h2 *ngIf="data.mode === 'edit'">Update Project</h2>
+    <form [formGroup]="projectForm">
+      <div class="mb-3">
+        <label for="projectTitle" class="form-label">Project Title:</label>
+        <input type="text" class="form-control" id="projectTitle" formControlName="title" />
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea class="form-control" id="description" formControlName="description"></textarea>
+      </div>
+
+      <button type="button" class="btn custom-btn" (click)="saveProject()" *ngIf="data.mode != 'edit'">Create Project</button>
+      <button type="button" class="btn custom-btn" (click)="saveProject()" *ngIf="data.mode === 'edit'">Update Project</button>
+      <button type="button" class="btn btn-danger" (click)="deleteProject()" style="margin-left:10px" *ngIf="data.mode === 'edit'">Delete Project</button>
+      <button type="button" class="btn btn-secondary" (click)="closePopup()" style="margin-left:10px">Cancel</button>
+    </form>
+  </div>
+</div>

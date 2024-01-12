@@ -16,6 +16,8 @@ import { TaskComponent } from './task/task.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ProjectComponent } from './project/project.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { RouterModule } from '@angular/router';
     BacklogComponent,
     AllProjectsComponent,
     ProjectDetailsComponent,
-    TaskComponent
+    TaskComponent,
+    ProjectComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

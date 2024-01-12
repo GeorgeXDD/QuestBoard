@@ -1,32 +1,41 @@
-<div class="overlay"></div>
-<div class="task-popup-container">
-  <div class="task-popup">
-    <h2 *ngIf="data.mode === 'new'">Create Task</h2>
-    <h2 *ngIf="data.mode === 'edit'">Update Task</h2>
-    <form [formGroup]="taskForm">
-      <div class="mb-3">
-        <label for="taskTitle" class="form-label">Task Title:</label>
-        <input type="text" class="form-control" id="taskTitle" formControlName="title" />
-      </div>
+<div class="overlay">
+  <div class="task-popup-container">
+    <div class="task-popup">
+      <h2 *ngIf="data.mode === 'new'">Create Task</h2>
+      <h2 *ngIf="data.mode === 'edit'">Update Task</h2>
+      <form [formGroup]="taskForm">
+        <div class="mb-3">
+          <label for="taskTitle" class="form-label">Task Title:</label>
+          <input type="text" class="form-control" id="taskTitle" formControlName="title" />
+        </div>
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Description:</label>
-        <textarea class="form-control" id="description" formControlName="description"></textarea>
-      </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <textarea class="form-control" id="description" formControlName="description"></textarea>
+        </div>
 
-      <div class="mb-3">
-        <label for="assignedUserId" class="form-label">Assign To:</label>
-        <input type="text" class="form-control" id="assignedUserId" formControlName="assignedUserId" [value]="assignedUserDisplay" readonly />
-      </div>
+        <div class="mb-3">
+          <label for="assignedUserId" class="form-label">Assign To:</label>
+          <select class="form-control" id="assignedUserId" formControlName="assignedUserId">
+            <option *ngFor="let user of users" [value]="user.id">{{ user.userName }}</option>
+          </select>
+        </div>
 
-      <div class="mb-3">
-        <label for="state" class="form-label">State:</label>
-        <textarea class="form-control" id="state" formControlName="state"></textarea>
-      </div>
+        <div class="mb-3">
+          <label for="state" class="form-label">State:</label>
+          <select class="form-control" id="state" formControlName="state">
+            <option value="ToDo">ToDo</option>
+            <option value="InProgress">InProgress</option>
+            <option value="InReview">InReview</option>
+            <option value="Done">Done</option>
+          </select>
+        </div>
 
-      <button type="button" class="btn btn-primary" (click)="saveTask()" *ngIf="data.mode != 'edit'">Create Task</button>
-      <button type="button" class="btn btn-primary" (click)="saveTask()" *ngIf="data.mode === 'edit'">Update Task</button>
-      <button type="button" class="btn btn-danger" (click)="closePopup()" style="margin-left:10px">Cancel</button>
-    </form>
+        <button type="button" class="btn custom-btn" (click)="saveTask()" *ngIf="data.mode != 'edit'">Create Task</button>
+        <button type="button" class="btn custom-btn" (click)="saveTask()" *ngIf="data.mode === 'edit'">Update Task</button>
+        <button type="button" class="btn btn-danger" (click)="deleteTask()" style="margin-left:10px" *ngIf="data.mode === 'edit'">Delete Task</button>
+        <button type="button" class="btn btn-secondary" (click)="closePopup()" style="margin-left:10px">Cancel</button>
+      </form>
+    </div>
   </div>
 </div>
