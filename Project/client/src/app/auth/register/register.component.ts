@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,7 +15,6 @@ export class RegisterComponent {
 
     this.userService.ApiUserRegister(registerData).subscribe(
       (response) => {
-
         const userId = response.id;
         this.userService.setUserIdInLocalStorage(userId);
         this.router.navigate(['/dashboard']);

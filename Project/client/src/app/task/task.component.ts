@@ -94,7 +94,7 @@ export class TaskComponent implements OnInit {
 
   deleteTask(): void {
     const confirmationDialog = this.dialog.open(ConfirmationComponent, {
-      data: { message: 'Are you sure you want to delete this project?' },
+      data: { message: 'Are you sure you want to delete this task?' },
       panelClass: 'custom-modal'
     });
   

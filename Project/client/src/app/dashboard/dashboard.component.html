@@ -10,7 +10,7 @@
         <div class="card mb-3" clickable (click)="navigateToProjectDetail(project.id)">
           <div class="card-body">
             <h5 class="card-title">{{ project.title }}</h5>
-            <p class="card-text">{{ project.description }}</p>
+            <p class="card-text">{{ project.description.slice(0, 79) }}</p>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col">{{ task.title }}</div>
-              <div class="col">{{ task.description }}</div>
+              <div class="col">{{ task.description.slice(0, 35) }}</div>
               <div class="col">{{ task.user }}</div>
               <div class="col">{{ task.state }}</div>
               <div class="col">{{ task.project }}</div>

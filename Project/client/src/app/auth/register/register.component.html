@@ -3,19 +3,34 @@
   <form (ngSubmit)="register(username.value, email.value, password.value)" #registerForm="ngForm">
     <div class="form-group">
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" ngModel required #username>
+      <input type="text" id="username" name="username" ngModel required #username="ngModel" minlength="3">
+      <div *ngIf="username.invalid && (username.dirty || username.touched)">
+        <small class="text-danger" *ngIf="username.errors?.['required']">Username is required.</small>
+        <small class="text-danger" *ngIf="username.errors?.['minlength']">Username must be at least 3 characters.</small>
+      </div>
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" ngModel required #email>
+      <input type="email" id="email" name="email" ngModel required email #email="ngModel">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <small class="text-danger" *ngIf="email.errors?.['required']">Email is required.</small>
+        <small class="text-danger" *ngIf="email.errors?.['email']">Invalid email address.</small>
+      </div>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" ngModel required #password>
+      <input type="password" id="password" name="password" ngModel required #password="ngModel" 
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$">
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <small class="text-danger" *ngIf="password.errors?.['required']">Password is required.</small>
+        <small class="text-danger" *ngIf="password.errors?.['pattern']">
+          Password must contain at least one lowercase letter, one uppercase letter, one number, one symbol, and be at least 6 characters.
+        </small>
+      </div>
     </div>
     <button type="submit" [disabled]="!registerForm.valid">Register</button>
   </form>
   <div class="login-link">
-      <p>Already have an account? <a routerLink="/login">Login</a></p>
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
   </div>
 </div>

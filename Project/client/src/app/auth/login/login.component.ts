@@ -8,6 +8,7 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  loginError: string | null = null;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -16,18 +17,18 @@ export class LoginComponent {
 
     this.userService.ApiUserLogin(loginData).subscribe(
       (response) => {
-      const userId = response?.id;
+        const userId = response?.id;
 
-      if (userId) {
-        this.userService.setUserIdInLocalStorage(userId);
+        if (userId) {
+          this.userService.setUserIdInLocalStorage(userId);
+          this.router.navigate(['/dashboard']);
+        }
+
         this.router.navigate(['/dashboard']);
-      }
-      
-      this.router.navigate(['/dashboard']);
-
       },
       (error) => {
         console.error('Login failed', error);
+        this.loginError = 'Invalid username or password. Please try again.';
       }
     );
   }
