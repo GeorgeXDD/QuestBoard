@@ -6,9 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    //test api commit
 
-    [Route("api/[controller]")] // /api/user
+    [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -28,7 +27,7 @@ namespace API.Controllers
             return users;
         }
 
-        [HttpGet("{id}")] // /api/users/1
+        [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
             var user = await _context.Users
@@ -46,7 +45,6 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            // Use your DbContext to query the Users table
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.UserName == request.Username && u.Password == request.Password);
 

@@ -1,3 +1,7 @@
+using API.CQRS.CommandHandlers.Projects;
+using API.CQRS.CommandHandlers.Tasks;
+using API.CQRS.QueryHandlers.Projects;
+using API.CQRS.QueryHandlers.Tasks;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -26,6 +30,16 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
+
+builder.Services.AddScoped<GetAllProjectsQueryHandler>();
+builder.Services.AddScoped<CreateProjectCommandHandler>();
+builder.Services.AddScoped<UpdateProjectCommandHandler>();
+builder.Services.AddScoped<DeleteProjectCommandHandler>();
+
+builder.Services.AddScoped<GetAllTasksQueryHandler>();
+builder.Services.AddScoped<CreateTaskCommandHandler>();
+builder.Services.AddScoped<UpdateTaskCommandHandler>();
+builder.Services.AddScoped<DeleteTaskCommandHandler>();
 
 var app = builder.Build();
 
